@@ -11,6 +11,6 @@
 
 return [
     'view_replace_str'       => [
-        '__static__'=>'/static/style'
+        '__static__'=>'/static/style/home'
     ]
 ];
