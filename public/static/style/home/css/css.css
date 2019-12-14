@@ -1,0 +1,21 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+}
+.container {
+  border: 1px solid #000 !important;
+}
+.head .welcome {
+  vertical-align: middle;
+}
+.head .welcome span {
+  margin-top: 0px;
+}
+.head > img {
+  width: 210px;
+}
+.head .tianqi {
+  text-align: right;
+}
