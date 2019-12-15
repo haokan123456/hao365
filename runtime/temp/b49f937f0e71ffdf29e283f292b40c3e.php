@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:62:"D:\www\hao365\public/../application/admin\view\cate\index.html";i:1576295358;s:42:"../application/admin/view/common/head.html";i:1576293749;s:42:"../application/admin/view/common/left.html";i:1576295310;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:62:"D:\www\hao365\public/../application/admin\view\cate\index.html";i:1576382432;s:42:"../application/admin/view/common/head.html";i:1576374484;s:42:"../application/admin/view/common/left.html";i:1576308774;s:44:"../application/admin/view/common/footer.html";i:1576375147;}*/ ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -10,14 +10,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/style/admin/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/style/admin/assets/images/favicon.png">
     <title>Matrix Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/style/admin/libs/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/style/admin/libs/jquery-minicolors/jquery.minicolors.css">
-    <link rel="stylesheet" type="text/css" href="/static/style/admin/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/style/admin/libs/quill/dist/quill.snow.css">
-    <link href="/static/style/admin/css/style.min.css" rel="stylesheet">
+    <link href="/static/style/admin/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/static/style/admin/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -56,7 +54,7 @@
                 <b class="logo-icon p-l-10">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="/static/style/admin/images/logo-icon.png" alt="homepage" class="light-logo" />
+                    <img src="/static/style/admin/assets/images/logo-icon.png" alt="homepage" class="light-logo" />
                    
                 </b>
                 <!--End Logo icon -->
@@ -70,7 +68,7 @@
                 <!-- <b class="logo-icon"> -->
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <!-- <img src="/static/style/admin/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                    <!-- <img src="/static/style/admin/assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
                     
                 <!-- </b> -->
                 <!--End Logo icon -->
@@ -199,7 +197,7 @@
                 <!-- User profile and search -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/static/style/admin/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="__ADMIN_/assets_/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated">
                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
@@ -235,7 +233,7 @@
                 
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">栏目管理 </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span class="hide-menu">栏目设置</span></a></li>
+                        <li class="sidebar-item"><a href="<?php echo url('/admin/cate/index'); ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu">栏目设置</span></a></li>
                     </ul>
                 </li>                        
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">广告管理 </span></a>
@@ -267,7 +265,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="page-breadcrumb">
+             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title">栏目管理</h4>
@@ -289,7 +287,31 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">Static Table</h5>
+                    </div>
+                    <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col" class='text-center'>#</th>
+                              <th scope="col" class='text-center'>栏目名称</th>
+                              <th scope="col" class='text-center'>栏目描述</th>
+                              <th scope="col" class='text-center'>操作</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): $i = 0; $__LIST__ = $cates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ct): $mod = ($i % 2 );++$i;?>
+                            <tr>
+                              <th scope="row" class='text-center'><?php echo $ct['id']; ?></th>
+                              <td><?php echo str_repeat('-',$ct['level']*4)?><?php echo $ct['title']; ?></td>
+                              <td><?php echo $ct['desc']; ?></td>
+                              <td calss='text-center'><button type="button" class="btn btn-primary btn-sm">添加</button><button type="button" class="btn btn-success btn-sm" style='margin-left: 5px;'>修改</button><button type="button" class="btn btn-danger btn-sm" style='margin-left: 5px;'>删除</button></td>
+                            </tr>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                          </tbody>
+                    </table>
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -298,7 +320,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">All Rights Reserved by Matrix-admin. Designed and Developed by WrapPixel. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-            </footer>
+</footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -313,73 +335,30 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="/static/style/admin/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/static/style/admin/assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="/static/style/admin/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="/static/style/admin/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="/static/style/admin/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/static/style/admin/extra-libs/sparkline/sparkline.js"></script>
+    <script src="/static/style/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/static/style/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/style/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/static/style/admin/assets/extra-libs/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
-    <script src="/static/style/admin/js/waves.js"></script>
+    <script src="/static/style/admin/dist/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="/static/style/admin/js/sidebarmenu.js"></script>
+    <script src="/static/style/admin/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="/static/style/admin/js/custom.min.js"></script>
-    <!-- This Page JS -->
-    <script src="/static/style/admin/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <script src="/static/style/admin/js/pages/mask/mask.init.js"></script>
-    <script src="/static/style/admin/libs/select2/dist/js/select2.full.min.js"></script>
-    <script src="/static/style/admin/libs/select2/dist/js/select2.min.js"></script>
-    <script src="/static/style/admin/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-    <script src="/static/style/admin/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-    <script src="/static/style/admin/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-    <script src="/static/style/admin/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-    <script src="/static/style/admin/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="/static/style/admin/libs/quill/dist/quill.min.js"></script>
-    <script>
-        //***********************************//
-        // For select 2
-        //***********************************//
-        $(".select2").select2();
+    <script src="/static/style/admin/dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!-- <script src="/static/style/admin/dist/js/pages/dashboards/dashboard1.js"></script> -->
+    <!-- Charts js Files -->
+    <script src="/static/style/admin/assets/libs/flot/excanvas.js"></script>
+    <script src="/static/style/admin/assets/libs/flot/jquery.flot.js"></script>
+    <script src="/static/style/admin/assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="/static/style/admin/assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="/static/style/admin/assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="/static/style/admin/assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="/static/style/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="/static/style/admin/dist/js/pages/chart/chart-page-init.js"></script>
 
-        /*colorpicker*/
-        $('.demo').each(function() {
-        //
-        // Dear reader, it's actually very easy to initialize MiniColors. For example:
-        //
-        //  $(selector).minicolors();
-        //
-        // The way I've done it below is just for the demo, so don't get confused
-        // by it. Also, data- attributes aren't supported at this time...they're
-        // only used for this demo.
-        //
-        $(this).minicolors({
-                control: $(this).attr('data-control') || 'hue',
-                position: $(this).attr('data-position') || 'bottom left',
-
-                change: function(value, opacity) {
-                    if (!value) return;
-                    if (opacity) value += ', ' + opacity;
-                    if (typeof console === 'object') {
-                        console.log(value);
-                    }
-                },
-                theme: 'bootstrap'
-            });
-
-        });
-        /*datwpicker*/
-        jQuery('.mydatepicker').datepicker();
-        jQuery('#datepicker-autoclose').datepicker({
-            autoclose: true,
-            todayHighlight: true
-        });
-        var quill = new Quill('#editor', {
-            theme: 'snow'
-        });
-
-    </script>
 </body>
 
 </html>

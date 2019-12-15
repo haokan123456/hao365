@@ -9,14 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="__ADMIN__/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="__ADMIN__/assets/images/favicon.png">
     <title>Matrix Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="__ADMIN__/libs/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="__ADMIN__/libs/jquery-minicolors/jquery.minicolors.css">
-    <link rel="stylesheet" type="text/css" href="__ADMIN__/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="__ADMIN__/libs/quill/dist/quill.snow.css">
-    <link href="__ADMIN__/css/style.min.css" rel="stylesheet">
+    <link href="__ADMIN__/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="__ADMIN__/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -60,7 +58,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="page-breadcrumb">
+             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title">栏目管理</h4>
@@ -82,7 +80,31 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">Static Table</h5>
+                    </div>
+                    <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col" class='text-center'>#</th>
+                              <th scope="col" class='text-center'>栏目名称</th>
+                              <th scope="col" class='text-center'>栏目描述</th>
+                              <th scope="col" class='text-center'>操作</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {volist name='cates' id='ct'}
+                            <tr>
+                              <th scope="row" class='text-center'>{$ct.id}</th>
+                              <td><?php echo str_repeat('-',$ct['level']*4)?>{$ct.title}</td>
+                              <td>{$ct.desc}</td>
+                              <td calss='text-center'><button type="button" class="btn btn-primary btn-sm">添加</button><button type="button" class="btn btn-success btn-sm" style='margin-left: 5px;'>修改</button><button type="button" class="btn btn-danger btn-sm" style='margin-left: 5px;'>删除</button></td>
+                            </tr>
+                            {/volist}
+                          </tbody>
+                    </table>
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -90,8 +112,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center">All Rights Reserved by Matrix-admin. Designed and Developed by WrapPixel. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-            </footer>
+            {include file="../application/admin/view/common/footer.html"}
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -106,73 +127,30 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="__ADMIN__/libs/jquery/dist/jquery.min.js"></script>
+    <script src="__ADMIN__/assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="__ADMIN__/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="__ADMIN__/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="__ADMIN__/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="__ADMIN__/extra-libs/sparkline/sparkline.js"></script>
+    <script src="__ADMIN__/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="__ADMIN__/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="__ADMIN__/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="__ADMIN__/assets/extra-libs/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
-    <script src="__ADMIN__/js/waves.js"></script>
+    <script src="__ADMIN__/dist/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="__ADMIN__/js/sidebarmenu.js"></script>
+    <script src="__ADMIN__/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="__ADMIN__/js/custom.min.js"></script>
-    <!-- This Page JS -->
-    <script src="__ADMIN__/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <script src="__ADMIN__/js/pages/mask/mask.init.js"></script>
-    <script src="__ADMIN__/libs/select2/dist/js/select2.full.min.js"></script>
-    <script src="__ADMIN__/libs/select2/dist/js/select2.min.js"></script>
-    <script src="__ADMIN__/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-    <script src="__ADMIN__/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-    <script src="__ADMIN__/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-    <script src="__ADMIN__/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-    <script src="__ADMIN__/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="__ADMIN__/libs/quill/dist/quill.min.js"></script>
-    <script>
-        //***********************************//
-        // For select 2
-        //***********************************//
-        $(".select2").select2();
+    <script src="__ADMIN__/dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!-- <script src="__ADMIN__/dist/js/pages/dashboards/dashboard1.js"></script> -->
+    <!-- Charts js Files -->
+    <script src="__ADMIN__/assets/libs/flot/excanvas.js"></script>
+    <script src="__ADMIN__/assets/libs/flot/jquery.flot.js"></script>
+    <script src="__ADMIN__/assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="__ADMIN__/assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="__ADMIN__/assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="__ADMIN__/assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="__ADMIN__/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="__ADMIN__/dist/js/pages/chart/chart-page-init.js"></script>
 
-        /*colorpicker*/
-        $('.demo').each(function() {
-        //
-        // Dear reader, it's actually very easy to initialize MiniColors. For example:
-        //
-        //  $(selector).minicolors();
-        //
-        // The way I've done it below is just for the demo, so don't get confused
-        // by it. Also, data- attributes aren't supported at this time...they're
-        // only used for this demo.
-        //
-        $(this).minicolors({
-                control: $(this).attr('data-control') || 'hue',
-                position: $(this).attr('data-position') || 'bottom left',
-
-                change: function(value, opacity) {
-                    if (!value) return;
-                    if (opacity) value += ', ' + opacity;
-                    if (typeof console === 'object') {
-                        console.log(value);
-                    }
-                },
-                theme: 'bootstrap'
-            });
-
-        });
-        /*datwpicker*/
-        jQuery('.mydatepicker').datepicker();
-        jQuery('#datepicker-autoclose').datepicker({
-            autoclose: true,
-            todayHighlight: true
-        });
-        var quill = new Quill('#editor', {
-            theme: 'snow'
-        });
-
-    </script>
 </body>
 
 </html>
